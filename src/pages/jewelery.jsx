@@ -31,6 +31,16 @@ function Jewelery({ onAddToCart }) {
     setSelectedAmount(amount || 1);
   };
 
+  const handleIncrement = () => {
+    setSelectedAmount((prevAmount) => prevAmount + 1);
+  };
+
+  const handleDecrement = () => {
+    if (selectedAmount > 1) {
+      setSelectedAmount((prevAmount) => prevAmount - 1);
+    }
+  };
+
   const handleAddToCart = () => {
     if (selectedProduct) {
       onAddToCart(selectedProduct, selectedAmount);
@@ -65,13 +75,17 @@ function Jewelery({ onAddToCart }) {
           <p>${selectedProduct.price}</p>
           <p>{selectedProduct.description}</p>
           <label htmlFor="amount">Amount:</label>
-          <input
-            type="number"
-            id="amount"
-            value={selectedAmount}
-            onChange={handleAmountChange}
-            min={1}
-          />
+          <div className="amount-control">
+            <button className='amounts' onClick={handleDecrement}>-</button>
+            <input
+              type="number"
+              id="amount"
+              value={selectedAmount}
+              onChange={handleAmountChange}
+              min={1}
+            />
+            <button className='amounts' onClick={handleIncrement}>+</button>
+          </div>
           <div className='buttons'>
             <button onClick={handleAddToCart}>Add to Cart</button>
           </div>
