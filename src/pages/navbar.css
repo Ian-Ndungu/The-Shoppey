@@ -1,0 +1,91 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 0.5px 1.5px -1px black;
+
+}
+
+
+.Logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.Logo p{
+    color: #171717;
+    font-size: 25px;
+    font-weight: 600;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    color: #626262;
+    font-size: 16px;
+    font-weight: 600;
+}
+.nav-menu li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.nav-menu hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #ff4141;
+}
+.logo-img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+  }
+.cart{
+    display: flex;
+    align-items: center;
+    gap: 45px;
+
+}
+.cart-icon{
+    font-size: 25px;
+}
+
+.login-cart button{
+    width: 127px;
+    height: 40px;
+    outline: none;
+    border: 1px #7a7a7a;
+    border-radius: 75px;
+    color: #515151;
+    font-size: 16px;
+    font-weight: 500;
+    background: white;
+    cursor: pointer;
+}
+
+.login-cart button:active{
+    background: #f3f3f3;
+}
+
+.nav-cart-count{
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -35px;
+    margin-left: -55px;
+    border-radius: 14px;
+    font-size: 12px;
+    background: red;
+    color: white;
+}

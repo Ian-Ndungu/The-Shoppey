@@ -1,0 +1,31 @@
+.about-container {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .about-image {
+    width: 50%; 
+    margin-right: 20px; 
+    border-radius: 65px;
+  }
+  
+  .about-content {
+    width: 50%; 
+  }
+  
+  
+  .about-heading {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about-text {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
