@@ -34,6 +34,25 @@
     overflow-y: auto;
   }
   
+  .amount-control {
+    display: flex;
+    align-items: center;
+
+    .amounts {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    input {
+      width: 40px;
+      text-align: center;
+      margin: 0 10px;
+    }
+  }
+
   .product-details-sidebar img {
     max-width: 100%;
     height: auto;

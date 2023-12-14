@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import './womens.css'; 
+import './womens.css';
 
 function WomensClothing({ onAddToCart }) {
   const [womensClothingData, setWomensClothingData] = useState([]);
@@ -31,6 +31,16 @@ function WomensClothing({ onAddToCart }) {
     setSelectedAmount(amount || 1);
   };
 
+  const handleIncrement = () => {
+    setSelectedAmount((prevAmount) => prevAmount + 1);
+  };
+
+  const handleDecrement = () => {
+    if (selectedAmount > 1) {
+      setSelectedAmount((prevAmount) => prevAmount - 1);
+    }
+  };
+
   const handleAddToCart = () => {
     if (selectedProduct) {
       onAddToCart(selectedProduct, selectedAmount);
@@ -59,19 +69,23 @@ function WomensClothing({ onAddToCart }) {
 
       {selectedProduct && (
         <div className="product-details-sidebar">
-          <button className="close-button" onClick={handleCloseSidebar}><RiCloseLine/></button>
+          <button className="close-button" onClick={handleCloseSidebar}><RiCloseLine /></button>
           <img src={selectedProduct.image} alt={selectedProduct.title} />
           <h3>{selectedProduct.title}</h3>
           <p>${selectedProduct.price}</p>
           <p>{selectedProduct.description}</p>
           <label htmlFor="amount">Amount:</label>
-          <input
-            type="number"
-            id="amount"
-            value={selectedAmount}
-            onChange={handleAmountChange}
-            min={1}
-          />
+          <div className="amount-control">
+            <button className='amounts' onClick={handleDecrement}>-</button>
+            <input
+              type="number"
+              id="amount"
+              value={selectedAmount}
+              onChange={handleAmountChange}
+              min={1}
+            />
+            <button className='amounts' onClick={handleIncrement}>+</button>
+          </div>
           <div className='buttons'>
             <button onClick={handleAddToCart}>Add to Cart</button>
           </div>
