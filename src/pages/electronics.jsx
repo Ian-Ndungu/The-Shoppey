@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './electronics.css'
+import { RiCloseLine } from 'react-icons/ri';
+import './electronics.css';
 
 function Electronics({ onAddToCart }) {
   const [electronicsData, setElectronicsData] = useState([]);
@@ -38,6 +39,11 @@ function Electronics({ onAddToCart }) {
     }
   };
 
+  const handleCloseSidebar = () => {
+    setSelectedProduct(null);
+    setSelectedAmount(1);
+  };
+
   return (
     <div className='electronics'>
       <h2>Electronics</h2>
@@ -53,6 +59,9 @@ function Electronics({ onAddToCart }) {
 
       {selectedProduct && (
         <div className="product-details-sidebar">
+          <button className="close-button" onClick={handleCloseSidebar}>
+          <RiCloseLine/>
+          </button>
           <img src={selectedProduct.image} alt={selectedProduct.title} />
           <h3>{selectedProduct.title}</h3>
           <p>${selectedProduct.price}</p>
