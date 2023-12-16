@@ -65,33 +65,6 @@
     width: 100%;
   }
 
-  .hero {
-    flex-direction: column;
-    height: 90px;
-  }
-
-  .hero-left,
-  .hero-right,
-  .new-collection {
-    width: 100%;
-    padding: 8px; /* Adjust the padding as needed */
-  }
-
-  .hero-left h2,
-  .hero-hand-icon p {
-    font-size: 16px;
-  }
-
-  .hero-hand-icon img {
-    max-width: 30px; /* Adjust the max-width as needed */
-  }
-
-  .hero-right img {
-    margin-top: -80px; /* Adjust the margin-top as needed */
-    height: 390px;
-
-  }
-
   
 .about-container {
   flex-direction: column;
@@ -133,4 +106,24 @@ font-size: 0.9em;
 
 .copyright p {
 font-size: 0.8em;
+}
+
+@media only screen and (max-width: 600px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-left {
+    order: 1; /* Keep the order of hero-left as the first element */
+  }
+
+  .hero-right {
+    order: 3; 
+    margin-top: 2px; /* Add some spacing between hero-left and hero-right on mobile */
+  }
+
+  .hero-right img {
+    max-width: 280px; 
+    height: auto; /* Ensure the image maintains its aspect ratio */
+  }
 }
