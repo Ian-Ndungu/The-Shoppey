@@ -42,8 +42,20 @@
   .product-list{
     grid-template-columns: 1fr 1fr ;
   }
+  .product-list {
+    padding: 0 8px; 
+  }
+
+  .product-list li {
+    width: calc(50% - 20px); 
+    margin: 2px;
+  }
+  .product-list li {
+    width: 100%;
+  }
   .map {
     grid-template-columns: 1fr 1fr ;
+    margin: 2px;
   }
 
   .cart {
@@ -78,7 +90,7 @@
   }
   
   .hero-right img {
-    max-width: 100%; 
+    max-width: 180%; 
     height: auto; 
     display: block;
     margin: 0 auto;

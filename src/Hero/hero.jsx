@@ -34,7 +34,7 @@ function Hero() {
             </Link>
         </div>
         <div className="hero-right">
-            <img src={heroImage} alt='' />
+            <img src={heroImage} alt='heroImage' />
         </div>
     </div>
   )
