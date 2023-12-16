@@ -39,7 +39,9 @@
 .login-cart button {
     width: 100%;
 }
-
+  .product-list{
+    grid-template-columns: 1fr 1fr ;
+  }
   .map {
     grid-template-columns: 1fr 1fr ;
   }
@@ -50,4 +52,35 @@
   .product-details-sidebar {
     width: 100%;
   }
+
+  .hero {
+    height: auto;
+    min-height: 100vh; 
+}
+
+.hero-left {
+    padding-left: 10px; 
+}
+
+.hero-left p {
+    font-size: 24px; 
+}
+
+.hero-hand-icon img {
+    width: 50px; 
+}
+
+.hero-latest-btn,
+.new-collection-btn {
+    width: 150px; 
+    height: 40px; 
+    font-size: 14px; 
+    margin-top: 15px; 
+}
+.hero-right{
+    width: 50px; 
+}
+.hero-right img{
+    width: 310px;
+}
 }
