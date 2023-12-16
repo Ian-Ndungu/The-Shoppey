@@ -55,11 +55,11 @@
 
   .hero {
     height: auto;
-    min-height: 100vh; 
+    min-height: 90vh; 
 }
 
 .hero-left {
-    padding-left: 10px; 
+    padding-left: 8px; 
 }
 
 .hero-left p {
@@ -81,6 +81,6 @@
     width: 50px; 
 }
 .hero-right img{
-    width: 310px;
+    width: 290px;
 }
 }
