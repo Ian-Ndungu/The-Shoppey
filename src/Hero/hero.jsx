@@ -27,14 +27,14 @@ function Hero() {
                 <RiArrowRightLine />
             </Link>
         </div>
+        <div className="hero-right">
+            <img src={heroImage} alt='heroImage' />
+        </div>
         <div className='new-collection'>
         <Link to="/new collection" className="new-collection-btn">
                 <div>New Collection</div>
                 <RiArrowRightLine />
             </Link>
-        </div>
-        <div className="hero-right">
-            <img src={heroImage} alt='heroImage' />
         </div>
     </div>
   )

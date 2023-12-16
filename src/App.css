@@ -66,35 +66,32 @@
   }
 
   .hero {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    height: 90px;
   }
-  
-  .hero-left {
-    padding: 20px;
+
+  .hero-left,
+  .hero-right,
+  .new-collection {
+    width: 100%;
+    padding: 8px; /* Adjust the padding as needed */
   }
-  
-  .hero-left h2 {
-    font-size: 18px;
-  }
-  
+
+  .hero-left h2,
   .hero-hand-icon p {
     font-size: 16px;
   }
-  
-  .hero-latest-btn,
-  .new-collection-btn {
-    font-size: 16px;
+
+  .hero-hand-icon img {
+    max-width: 30px; /* Adjust the max-width as needed */
   }
-  
+
   .hero-right img {
-    max-width: 180%; 
-    height: auto; 
-    display: block;
-    margin: 0 auto;
+    margin-top: -80px; /* Adjust the margin-top as needed */
+    height: 390px;
+
   }
+
   
 .about-container {
   flex-direction: column;
