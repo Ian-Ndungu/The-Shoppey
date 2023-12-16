@@ -1,9 +1,6 @@
 .navbar {
     display: flex;
     justify-content: space-around;
-    padding: 16px;
-    box-shadow: 0 0.5px 1.5px -1px black;
-
 }
 
 
@@ -89,3 +86,5 @@
     background: red;
     color: white;
 }
+
+

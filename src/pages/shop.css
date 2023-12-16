@@ -7,8 +7,8 @@
   
   .product-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 80px;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-gap: 30px;
     margin-top: 110px;
     height: 100%;
   }
@@ -16,7 +16,7 @@
     width: 100%;
     height: 250px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     display: flex;
     flex-direction: column;

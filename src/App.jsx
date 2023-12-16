@@ -9,6 +9,7 @@ import Shop from './pages/shop';
 // import Login from './pages/login';
 import Jewelery from './pages/jewelery';
 import About from './pages/about';
+import './App.css'
 
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/'element={<Shop />}/>
+          <Route path='/'element={<Shop onAddToCart={handleAddToCart}/>}/>
           <Route path='/mens'element={<MenClothing onAddToCart={handleAddToCart}/>}/>
           <Route path='/womens'element={<WomenClothing onAddToCart={handleAddToCart}/>}/>
           <Route path='/electronics'element={<Electronics onAddToCart={handleAddToCart} />}/>

@@ -70,3 +70,39 @@
     align-items: center;
     justify-content: center;
 }
+.hero-right img{
+    width: 310px;
+}
+
+@media screen and (max-width: 400px) {
+    .hero {
+        height: auto;
+        min-height: 100vh; 
+    }
+
+    .hero-left {
+        padding-left: 10px; 
+    }
+
+    .hero-left p {
+        font-size: 24px; 
+    }
+
+    .hero-hand-icon img {
+        width: 50px; 
+    }
+
+    .hero-latest-btn,
+    .new-collection-btn {
+        width: 150px; 
+        height: 40px; 
+        font-size: 14px; 
+        margin-top: 15px; 
+    }
+    .hero-right{
+        width: 50px; 
+    }
+    .hero-right img{
+        width: 310px;
+    }
+}

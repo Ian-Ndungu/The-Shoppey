@@ -57,16 +57,17 @@ function MensClothing({ onAddToCart }) {
   return (
     <div className='mens-clothing'>
       <h2>Men's Clothing</h2>
-      <ul className='map'>
-        {mensClothingData.map((product) => (
-          <li key={product.id} onClick={() => handleCardClick(product)}>
-            <img src={product.image} alt={product.title} />
-            <p>{product.title}</p>
-            <p>${product.price}</p>
-          </li>
-        ))}
-      </ul>
-
+      <div className="map">
+        <ul className='map'>
+          {mensClothingData.map((product) => (
+            <li key={product.id} onClick={() => handleCardClick(product)}>
+              <img src={product.image} alt={product.title} />
+              <p>{product.title}</p>
+              <p>${product.price}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
       {selectedProduct && (
         <div className="product-details-sidebar">
           <button className="close-button" onClick={handleCloseSidebar}><RiCloseLine /></button>
