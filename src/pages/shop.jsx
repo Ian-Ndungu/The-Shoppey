@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Hero from '../Hero/hero';
 import Footer from './footer';
 import './shop.css';
+import { CartContext } from './cartcontext';
 
-const Shop = ({ onAddToCart }) => {
+const Shop = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(1);
@@ -13,6 +14,8 @@ const Shop = ({ onAddToCart }) => {
       .then(res => res.json())
       .then(json => setProducts(json));
   }, []);
+
+  const { dispatch } = useContext(CartContext);
 
   const handleCardClick = (product) => {
     setSelectedProduct(product);
@@ -34,20 +37,21 @@ const Shop = ({ onAddToCart }) => {
     }
   };
 
-  const handleAddToCart = () => {
-    if (selectedProduct) {
-      // Use the onAddToCart prop to add the selected product and amount to the cart
-      onAddToCart(selectedProduct, selectedAmount);
-
-      // Reset the selected product and amount
-      setSelectedProduct(null);
-      setSelectedAmount(1);
-    }
-  };
-
   const handleCloseSidebar = () => {
     setSelectedProduct(null);
     setSelectedAmount(1);
+  };
+
+  const handleAddToCart = () => {
+    if (selectedProduct) {
+      dispatch({
+        type: 'ADD_TO_CART',
+        product: selectedProduct,
+        quantity: selectedAmount,
+      });
+      setSelectedProduct(null);
+      setSelectedAmount(1);
+    }
   };
 
   const renderProductDetails = () => {
@@ -75,7 +79,9 @@ const Shop = ({ onAddToCart }) => {
           <button className="amounts" onClick={handleIncrement}>+</button>
         </div>
         <div className='buttons'>
-          <button onClick={handleAddToCart}>Add to Cart</button>
+          <button className='addcart-btn' onClick={handleAddToCart}>
+            Add to cart
+          </button>
           <button onClick={handleCloseSidebar}>Close</button>
         </div>
       </div>

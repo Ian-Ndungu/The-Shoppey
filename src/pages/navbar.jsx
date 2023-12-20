@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RiMenLine, RiRobotLine, RiShoppingCartLine, RiStore2Line, RiWomenLine } from 'react-icons/ri';
+import { RiLoginBoxLine, RiMenLine, RiRobotLine, RiShoppingCartLine, RiStore2Line, RiWomenLine } from 'react-icons/ri';
 import './navbar.css';
 import shopLogo from "../images/e-commerce.jpg";
 import { Link } from 'react-router-dom';
@@ -39,8 +39,12 @@ function Navbar({ cartItems }) {
         </li>
       </ul>
       <div className='cart'>
-        <Link style={{ textDecoration: 'none' }} to='/cart'><RiShoppingCartLine className='cart-icon' /></Link>
+        <Link style={{ textDecoration: 'none' }} to='/cart'><RiShoppingCartLine className='cart-icon' />Cart</Link>
         <div className="nav-cart-count">{cartCount}</div>
+      </div>
+      
+      <div className='login'>
+        <Link style={{ textDecoration: 'none' }} to='/login'><RiLoginBoxLine className='user-icon' />Login</Link>
       </div>
     </div>
   );

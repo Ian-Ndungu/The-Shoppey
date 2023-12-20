@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import './jewelery.css';
+import { CartContext } from './cartcontext';
 
-function Jewelery({ onAddToCart }) {
+function Jewelery() {
   const [jeweleryData, setJeweleryData] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(1);
@@ -20,6 +21,8 @@ function Jewelery({ onAddToCart }) {
 
     fetchData();
   }, []);
+
+  const { dispatch } = useContext(CartContext);
 
   const handleCardClick = (product) => {
     setSelectedProduct(product);
@@ -43,7 +46,11 @@ function Jewelery({ onAddToCart }) {
 
   const handleAddToCart = () => {
     if (selectedProduct) {
-      onAddToCart(selectedProduct, selectedAmount);
+      dispatch({
+        type: 'ADD_TO_CART',
+        product: selectedProduct,
+        quantity: selectedAmount,
+      });
       setSelectedProduct(null);
       setSelectedAmount(1);
     }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import './electronics.css';
+import { CartContext } from './cartcontext';
 
-function Electronics({ onAddToCart }) {
+function Electronics() {
   const [electronicsData, setElectronicsData] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedAmount, setSelectedAmount] = useState(1);
@@ -20,6 +21,8 @@ function Electronics({ onAddToCart }) {
 
     fetchData();
   }, []);
+
+  const { dispatch } = useContext(CartContext);
 
   const handleCardClick = (product) => {
     setSelectedProduct(product);
@@ -41,7 +44,11 @@ function Electronics({ onAddToCart }) {
 
   const handleAddToCart = () => {
     if (selectedProduct) {
-      onAddToCart(selectedProduct, selectedAmount);
+      dispatch({
+        type: 'ADD_TO_CART',
+        product: selectedProduct,
+        quantity: selectedAmount,
+      });
       setSelectedProduct(null);
       setSelectedAmount(1);
     }

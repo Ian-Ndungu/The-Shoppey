@@ -6,10 +6,11 @@ import Cart from './pages/Cart';
 import WomenClothing from './pages/womens';
 import MenClothing from './pages/men';
 import Shop from './pages/shop';
-// import Login from './pages/login';
+import SignIn from './pages/login';
 import Jewelery from './pages/jewelery';
 import About from './pages/about';
 import './App.css'
+import { CartContextProvider } from './pages/cartcontext';
 
 
 function App() {
@@ -31,18 +32,21 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path='/'element={<Shop onAddToCart={handleAddToCart}/>}/>
-          <Route path='/mens'element={<MenClothing onAddToCart={handleAddToCart}/>}/>
-          <Route path='/womens'element={<WomenClothing onAddToCart={handleAddToCart}/>}/>
-          <Route path='/electronics'element={<Electronics onAddToCart={handleAddToCart} />}/>
-          <Route path='/cart' element={<Cart cartItems={cart} onCheckout={handleCheckout} onDeleteItem={handleDeleteItem} />} />
-          <Route path='/jewelery' element={<Jewelery onAddToCart={handleAddToCart}/>}/>
-          <Route path='/about' element={<About />} />
-        </Routes>
-      </BrowserRouter>
+      <CartContextProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path='/'element={<Shop />}/>
+            <Route path='/mens'element={<MenClothing onAddToCart={handleAddToCart}/>}/>
+            <Route path='/womens'element={<WomenClothing onAddToCart={handleAddToCart}/>}/>
+            <Route path='/electronics'element={<Electronics onAddToCart={handleAddToCart} />}/>
+            <Route path='/cart' element={<Cart cartItems={cart} onCheckout={handleCheckout} onDeleteItem={handleDeleteItem} />} />
+            <Route path='/jewelery' element={<Jewelery onAddToCart={handleAddToCart}/>}/>
+            <Route path='/about' element={<About />} />
+            <Route path='/login' element={<SignIn />} />
+          </Routes>
+        </BrowserRouter>
+      </CartContextProvider>
     </div>
   );
 }
