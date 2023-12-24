@@ -1,49 +1,84 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword } from '../firebase';
-import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, auth, db } from '../firebase';
+import { Link } from 'react-router-dom';
 
-const SignUp = () => {
+const Signup = (props) => {
+  // defining state
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
+  const [error, setError] = useState('');
 
-  const signUp = (e) => {
+  // signup
+  const signup = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password, username)
-      .then((userCredentials) => {
-        console.log(userCredentials);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((cred) => {
+        // Used 'db' instance to access the collection
+        db.collection('SignedUpUsersData') 
+          .doc(cred.user.uid)
+          .set({
+            Name: name,
+            Email: email,
+            Password: password
+          })
+          .then(() => {
+            setName('');
+            setEmail('');
+            setPassword('');
+            setError('');
+            props.history.push('/login');
+          })
+          .catch((err) => setError(err.message));
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((err) => setError(err.message));
   };
 
   return (
-    <div className='signin-container'>
-      <form onSubmit={signUp}>
-        <h1>Create Account</h1>
+    <div className='container'>
+      <br />
+      <h2>Sign up</h2>
+      <br />
+      <form autoComplete="off" className='form-group' onSubmit={signup}>
+        <label htmlFor="name">Name</label>
         <input
-          type='text'
-          placeholder='Choose a username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          type="text"
+          className="form-control"
+          required
+          onChange={(e) => setName(e.target.value)}
+          value={name}
         />
+        <br />
+        <label htmlFor="email">Email</label>
         <input
-          type='text'
-          placeholder='Enter your email'
-          value={email}
+          type="email"
+          className="form-control"
+          required
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
+        <br />
+        <label htmlFor="password">Password</label>
         <input
-          type='password'
-          placeholder='Enter your password'
-          value={password}
+          type="password"
+          className="form-control"
+          required
           onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
-        <button type='submit'>Sign Up</button>
+        <br />
+        <button type="submit" className='btn btn-success btn-md mybtn'>
+          SUBMIT
+        </button>
       </form>
+      {error && <span className='error-msg'>{error}</span>}
+      <br />
+      <span>
+        Already have an account? Login
+        <Link to="/login"> Here</Link>
+      </span>
     </div>
   );
 };
 
-export default SignUp;
+export default Signup;

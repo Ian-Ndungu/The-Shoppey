@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { RiLoginBoxLine, RiMenLine, RiRobotLine, RiShoppingCartLine, RiStore2Line, RiWomenLine } from 'react-icons/ri';
 import './navbar.css';
 import shopLogo from "../images/e-commerce.jpg";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {signOut, auth} from "../firebase"
+import { CartContext } from './cartcontext';
 
 function Navbar({ cartItems }) {
   // State to manage the active menu and cart count
   const [menu, setMenu] = useState('sharp');
-  const [cartCount, setCartCount] = useState(0);
 
-  // Update cartCount when cartItems change
-  useEffect(() => {
-    setCartCount(cartItems?.length ?? 0);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   setCartCount(cartItems?.length ?? 0);
+  // }, [cartItems]);
+  const { shoppingCart } = useContext(CartContext);
+  const navigate = useNavigate()
+
+    const handleSignOut = () => {
+      signOut(auth).then(()=>{
+        console.log("sign out successful")
+        navigate("/login")
+      }).catch(error=>{
+        console.log(error)
+      })
+      
+
+    }
 
   return (
     <div className='navbar'>
@@ -40,12 +53,15 @@ function Navbar({ cartItems }) {
       </ul>
       <div className='cart'>
         <Link style={{ textDecoration: 'none' }} to='/cart'><RiShoppingCartLine className='cart-icon' />Cart</Link>
-        <div className="nav-cart-count">{cartCount}</div>
+        <div className="nav-cart-count">{shoppingCart.length}</div>
       </div>
-      
-      <div className='login'>
+      {!auth?.currentUser?.email && (<div className='login'>
         <Link style={{ textDecoration: 'none' }} to='/login'><RiLoginBoxLine className='user-icon' />Login</Link>
-      </div>
+      </div>)}
+      {auth?.currentUser?.email &&( <div className='sign-out'>
+        <button className='Authentication' onClick={handleSignOut}>Sign Out</button>
+      </div>)}
+     
     </div>
   );
 }

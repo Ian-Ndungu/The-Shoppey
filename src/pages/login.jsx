@@ -1,68 +1,61 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
-import { signInWithEmailAndPassword, auth } from '../firebase';
-import SignUp from './signup'; // Import SignUp component
-import AuthDetails from './AuthDetails'; // Import AuthDetails component
+import { auth,signInWithEmailAndPassword } from '../firebase';
 import './login.css'
+import { Link, useNavigate } from 'react-router-dom';
 
-const CustomAlert = ({ message }) => (
-  <div style={{ backgroundColor: 'red', color: 'white', padding: '10px', borderRadius: '5px' }}>
-    {message}
-  </div>
-);
-
-const SignIn = () => {
+export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValidAccount, setIsValidAccount] = useState(true);
-  const [showAlert, setShowAlert] = useState(false);
-  const navigate = useNavigate(); // Initialize useHistory
+  const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialized useNavigate
 
-  const signInHandler = async (e) => {
+  const login = async (e) => {
     e.preventDefault();
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setIsValidAccount(true);
+      await signInWithEmailAndPassword(auth,email, password);
+      setEmail('');
+      setPassword('');
+      setError('');
       navigate('/');
-    } catch (error) {
-      setIsValidAccount(false);
-      setShowAlert(true);
+    } catch (err) {
+      setError(err.message);
     }
   };
 
   return (
-    <div>
-      <div className='signin-container'>
-        <form onSubmit={signInHandler}>
-          <h1>Log In</h1>
-          <input
-            type='text'
-            placeholder='Enter your email or username'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type='password'
-            placeholder='Enter your password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type='submit'>Log In</button>
-          {showAlert && (
-            <div>
-              <CustomAlert message="Account doesn't exist. Would you like to " />
-            </div>
-          )}
-        </form>
-      </div>
-      <div>
-        {!isValidAccount && <SignUp />}
-        <AuthDetails />
-      </div>
+    <div className='container'>
+      <br />
+      <h2>Login</h2>
+      <br />
+      <form autoComplete='off' className='form-group' onSubmit={login}>
+        <label htmlFor='email'>Email</label>
+        <input
+          type='email'
+          className='form-control'
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <br />
+        <label htmlFor='password'>Password</label>
+        <input
+          type='password'
+          className='form-control'
+          required
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <br />
+        <button type='submit' className='btn btn-success btn-md mybtn'>
+          LOGIN
+        </button>
+      </form>
+      {error && <span className='error-msg'>{error}</span>}
+      <br />
+      <span>
+        Don't have an account? Register <Link to='/signup'>Here</Link>
+      </span>
     </div>
   );
 };
-
-export default SignIn;
